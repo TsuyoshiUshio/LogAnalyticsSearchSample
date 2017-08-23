@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key ="resourceGroup" value ="YOUR_RESOURCE_GROUP_NAME" />
+    <add key ="subscriptionId" value ="YOUR_SUBSCRIPTION_ID" />
+    <add key ="clientId" value="YOUR_CLIENT_ID"/>
+    <add key ="clientSecret" value ="YOUR_CLIENT_PASSWORD"/>
+    <add key ="tenantId" value ="YOUR_TENANT_ID" />
+  </appSettings>
+</configuration>
