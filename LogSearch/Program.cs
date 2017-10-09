@@ -36,9 +36,9 @@ namespace LogSearch
         async Task ExecAsync()
         {
 
-            string result = await SearchAsync("Type=CQRTelemetry_CL");
+            string result = await SearchAsync("*");
             Console.WriteLine($"Search Key: *\n");
-            // Console.WriteLine(result);
+            Console.WriteLine(result);
             Console.ReadLine();
         }
 
@@ -52,6 +52,12 @@ namespace LogSearch
             // Execute
             var response = await httpClient.PostAsync(GetUri(), content);
 
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"Error: You've got StatusCode: {response.StatusCode}, ReasonPhrase: {response.ReasonPhrase}.");
+                return "No";
+            }
+
             // Deserialize the Json into Model objects
             var resultObject = JsonConvert.DeserializeObject<Rootobject>(await response.Content.ReadAsStringAsync());
 
@@ -59,7 +65,7 @@ namespace LogSearch
             // Error Handling
             if (resultObject.__metadata.resultType == "error")
             {
-                throw new Exception("Search Result Error!");
+                Console.WriteLine($"Warning: returns error for your query: \"{query}\". To solve this problem, please search by the same query on your Log Analytics");
             }
 
             var values = resultObject.value != null ? resultObject.value : new Value[] { };
