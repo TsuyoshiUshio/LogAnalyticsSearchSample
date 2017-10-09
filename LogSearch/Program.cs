@@ -53,7 +53,7 @@ namespace LogSearch
             var response = await httpClient.PostAsync(GetUri(), content);
 
             if (!response.IsSuccessStatusCode)
-            {
+            { 
                 Console.WriteLine($"Error: You've got StatusCode: {response.StatusCode}, ReasonPhrase: {response.ReasonPhrase}.");
                 return "No";
             }
